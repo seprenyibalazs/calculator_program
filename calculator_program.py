@@ -30,23 +30,27 @@ operations = {
     "/": divide,
 
 }
-num1 = int(input("What's the first number? "))
-num2 = int(input("What's the secund number? "))
 
-for n in operations:
-    print(n)
-choosen = input("Which operations will you use?")
-"""
-answer = 0
-if choosen == "+":
-    answer = add(num1, num2)
-elif choosen == "-":
-    answer = subtract(num1, num2)
-elif choosen == "*":
-    answer = multiply(num1, num2)
-elif choosen == "/":
-    answer = divide(num1, num2)
-"""
-calculation_function = operations[choosen]
-answer = calculation_function(num1, num2)
-print(f"{num1} {choosen} {num2} = {answer}")
+
+def calculation():
+    num1 = float(input("What's the first number? "))
+    for n in operations:
+        print(n)
+    should_continue = True
+    while should_continue:
+
+        choosen = input("Pick an operation :")
+        num2 = float(input("What's the secund number? "))
+        calculation_function = operations[choosen]
+        answer = calculation_function(num1, num2)
+
+        print(f"{num1} {choosen} {num2} = {answer}")
+
+        if input(f"Type 'y' to continue calclate with {answer}, or type 'n' to start a new calculation: ") == 'y':
+            num1 = answer
+        else:
+            should_continue = False
+            calculation()
+
+
+calculation()
